@@ -1,6 +1,6 @@
 <?php 
   require_once("./core/init.php");
-  
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
     <form name="customDonation" id="customDonation">
       <div class="input-group-1">
         <label for="custom-amount">₹</label>
-        <input id="custom-amount" name="custom-amount" type="number">
+        <input id="custom-amount" name="custom-amount" type="number" min = "100" required>
         <div class="warn"></div>
       </div>
     </form>
@@ -57,38 +57,38 @@
       <form class="clearfix">
         <!-- Mandatory Parameters -->
         <div class="input-group-2">
-          <label>First Name</label>
-          <input type="text">
+          <label>First Name *</label>
+          <input type="text" id="fname" required>
         </div>
         <div class="input-group-2">
           <label>Last Name</label>
-          <input type="text">
+          <input type="text" id="lname">
         </div>
         <div class="input-group-1">
-          <label>Email Address</label>
-          <input type="email">
+          <label>Email Address *</label>
+          <input type="email" id="email" required>
         </div>
         <div class="input-group-1">
-          <label>Phone Number</label>
-          <input type="number">
+          <label>Mobile Number*</label>
+          <input type="number" id="mobile" required>
         </div>
         <hr>
         <!-- Optional Parameter -->
         <div class="input-group-1">
           <label>Street Address</label>
-          <input type="text">
+          <input type="text" id="address">
         </div>
         <div class="input-group-3">
           <label>City</label>
-          <input type="text">
+          <input type="text" id="city">
         </div>
         <div class="input-group-3">
           <label>State</label>
-          <input type="text">
+          <input type="text" id="state">
         </div>
         <div class="input-group-3">
           <label>Zip Code</label>
-          <input type="number">
+          <input type="number" id="zip">
         </div>
       </form>
       <div class="clearfix">

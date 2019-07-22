@@ -32,6 +32,10 @@ button {
     border-radius: 0.3rem 0.3rem 0 0;
   }
 }
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .donate form {
   display: none;
   width: 12rem;

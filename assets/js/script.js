@@ -38,13 +38,18 @@ $('.donate label').on("click", function () {
 
 $('#custom .next').on("click", function () {
   amount = $('input[name=custom-amount]', '#customDonation').val();
-  reach = amount * 22;
-  $('#confirm .amount').text("₹" + amount);
-  $('#check span').text("₹" + amount);
-  $('#confirm strong').text(reach + " voters");
-  $("#custom").hide("slide", { easing: "easeInQuart", direction: "left" }, 700, function () {
-    $("#details").show("slide", { easing: "easeOutQuart", direction: "right" }, 700);
-  });
+  // console.log(amount);
+  if(amount == "" || amount < 100){
+    alert("Amount must be more than ₹100.");
+  }else{
+    reach = amount * 22;
+    $('#confirm .amount').text("₹" + amount);
+    $('#check span').text("₹" + amount);
+    $('#confirm strong').text(reach + " voters");
+    $("#custom").hide("slide", { easing: "easeInQuart", direction: "left" }, 700, function () {
+      $("#details").show("slide", { easing: "easeOutQuart", direction: "right" }, 700);
+    });
+  }
 });
 
 $('#custom .back').on("click", function () {
@@ -54,10 +59,49 @@ $('#custom .back').on("click", function () {
 });
 
 $('#details .next').on("click", function () {
-  console.log(amount);
-  $("#details").hide("slide", { easing: "easeInQuart", direction: "left" }, 700, function () {
-    $("#check").show("slide", { easing: "easeOutQuart", direction: "right" }, 700);
-  });
+  fname= $('#fname').val();
+  lname= $('#lname').val();
+  email= $('#email').val();
+  mobile= $('#mobile').val();
+  address= $('#address').val();
+  city= $('#city').val();
+  state= $('#state').val();
+  zip= $('#zip').val()
+  if(fname == "" || email == "" || mobile == ""){
+    alert("Fields marked with * (astrick) are required");
+  }else if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+      alert("Please enter a valid Email Id");
+  }else{
+    $.ajax({
+      url: 'hash.php',
+      type: 'post',
+      data: JSON.stringify({
+        amount: amount,
+        fname: fname,
+        lname: lname,
+        email: email,
+        mobile: mobile,
+        address: address,
+        city: city,
+        state: state,
+        zip: zip
+      }),
+      contentType: "application/json",
+      dataType: 'json',
+      success: function(json) {
+        if (json['error']) {
+          $('#alertinfo').html('<i class="fa fa-info-circle"></i>'+json['error']);
+        }else if (json['success']) {
+          console.log(json);
+          // $('#hash').val(json['success']);
+        }
+      }
+    });
+    console.log(amount);
+    $("#details").hide("slide", { easing: "easeInQuart", direction: "left" }, 700, function () {
+      $("#check").show("slide", { easing: "easeOutQuart", direction: "right" }, 700);
+    });
+  }
 });
 
 $('#details .back').on("click", function () {
