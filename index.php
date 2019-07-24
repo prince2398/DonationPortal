@@ -62,7 +62,7 @@
         </div>
         <div class="input-group-2">
           <label>Last Name</label>
-          <input type="text" id="lname">
+          <input type="text" id="lname" value="">
         </div>
         <div class="input-group-1">
           <label>Email Address *</label>
@@ -76,19 +76,19 @@
         <!-- Optional Parameter -->
         <div class="input-group-1">
           <label>Street Address</label>
-          <input type="text" id="address">
+          <input type="text" id="address" value="">
         </div>
         <div class="input-group-3">
           <label>City</label>
-          <input type="text" id="city">
+          <input type="text" id="city" value="">
         </div>
         <div class="input-group-3">
           <label>State</label>
-          <input type="text" id="state">
+          <input type="text" id="state" value="">
         </div>
         <div class="input-group-3">
           <label>Zip Code</label>
-          <input type="number" id="zip">
+          <input type="number" id="zip" value="">
         </div>
       </form>
       <div class="clearfix">

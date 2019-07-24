@@ -1,9 +1,10 @@
 <?php
-    define("DBHOST",'localhost');
-    define("DBUSER",'root1');
-    define("DBPASSWORD",'Prince2398');
+    define("DBHOST",'');
+    define("DBUSER",'');
+    define("DBPASSWORD",'');
     define("DBNAME", 'donation');
     define("HOME",'http://donationportal.lan');
-
-    $errors = array();
+    define("MERCHANT_KEY", "");
+    define("MERCHANT_SALT", "");
+    
 ?>
