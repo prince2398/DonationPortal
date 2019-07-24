@@ -1,3 +1,3 @@
 # Donation Portal
 
-## Donation portral with PayUmoney as payment gateway
+### Donation portal with PayUmoney as payment gateway
