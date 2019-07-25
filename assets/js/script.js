@@ -1,6 +1,22 @@
 var amount;
 var reach;
 
+var key;
+var txnid; 
+var hash;
+var fname;
+var lname;
+var email;
+var mobile;
+var pinfo;
+var address;
+var city;
+var state;
+var zip;
+var surl;
+var furl;
+var mode = 'dropout';	
+
 var x = $(window).width() - 400;
 
 $('.donate form').on("click", function () {
@@ -59,41 +75,42 @@ $('#custom .back').on("click", function () {
 });
 
 $('#details .next').on("click", function () {
-  fname= $('#fname').val();
-  lname= $('#lname').val();
-  email= $('#email').val();
-  mobile= $('#mobile').val();
-  address= $('#address').val();
-  city= $('#city').val();
-  state= $('#state').val();
-  zip= $('#zip').val()
+  fname   = $('#fname').val();
+  lname   = $('#lname').val();
+  email   = $('#email').val();
+  mobile  = $('#mobile').val();
+  address = $('#address').val();
+  city    = $('#city').val();
+  state   = $('#state').val();
+  zip     = $('#zip').val()
   if(fname == "" || email == "" || mobile == ""){
     alert("Fields marked with * (astrick) are required");
   }else if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
       alert("Please enter a valid Email Id");
   }else{
     $.ajax({
-      url: 'hash.php',
-      type: 'post',
-      data: JSON.stringify({
-        amount: amount,
-        fname: fname,
-        lname: lname,
-        email: email,
-        mobile: mobile,
-        address: address,
-        city: city,
-        state: state,
-        zip: zip
+      url  : 'hash.php',
+      type : 'post',
+      data : JSON.stringify({
+        amount  : amount,
+        fname   : fname,
+        lname   : lname,
+        email   : email,
+        mobile  : mobile,
+        address : address,
+        city    : city,
+        state   : state,
+        zip     : zip
       }),
       contentType: "application/json",
       dataType: 'json',
       success: function(json) {
         if (json['error']) {
           $('#alertinfo').html('<i class="fa fa-info-circle"></i>'+json['error']);
-        }else if (json['success']) {
+        }else if (json['status'] == 'success') {
           console.log(json);
-          // $('#hash').val(json['success']);
+          res = json['response'];
+          setParams(res);
         }
       }
     });
@@ -103,6 +120,28 @@ $('#details .next').on("click", function () {
     });
   }
 });
+
+function setParams(data) {
+  
+  
+  values  = data['values'];
+
+  key     = values['key'];
+  txnid   = values['txnid']; 
+  hash    = data['hash'];
+  amount  = values['amount'];
+  fname   = values['fname'];
+  email   = values['email'];
+  mobile  = values['mobile'];
+  lname   = values['lname'];  
+  pinfo   = values['pinfo'];
+  address = values['address'];
+  city    = values['city'];
+  state   = values['state'];
+  zip     = values['zip'];
+  surl    = values['surl'];
+  furl    = values['surl'];
+}
 
 $('#details .back').on("click", function () {
 

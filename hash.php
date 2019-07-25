@@ -22,6 +22,7 @@
         }
         $hashString .= MERCHANT_SALT;
         $hash = hash('sha512', $string);
+        $hashValues ['surl'] = HOME.'response.php';
         return array("hash"=>$hash,"values"=>$hashValues);
     }
 
